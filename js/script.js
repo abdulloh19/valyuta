@@ -4,11 +4,11 @@ const uzs = document.querySelector("#uzs"),
   usd = document.querySelector("#usd")
 
   uzs.addEventListener("input", () => {
-    const request = new XMLHttpRequest()
+    const request = new XMLHttpRequest() // constructor object qaytaradi
 
-    request.open('GET', 'json/current.json')
-    request.setRequestHeader('Context-Type', 'application/json; charset=utf-8')
-    request.send()
+    request.open('GET', 'json/current.json') // so'rov nastroykani to'g'irlimiza
+    request.setRequestHeader('Content-Type', 'application/json; charset=utf-8') // so'rov sarlavhasi
+    request.send() // so'rovni yuborish
 
     request.addEventListener('load', () => {
       if(request.status === 200) {
@@ -16,7 +16,7 @@ const uzs = document.querySelector("#uzs"),
         const data = JSON.parse(request.response)
         usd.value = (+uzs.value / data.current.usd).toFixed(2)
       }else {
-        usd.value = 'Something went wrong'
+        usd.value = 'Something went wrong' // error berganda chiqadi
       }
     })
   })
